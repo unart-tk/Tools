@@ -1,0 +1,7 @@
+sw_home="$HOME"/kit/sw-buntar
+alias etangle=$sw_home/Eweb/release/etangle.py
+alias html2text=$sw_home/Html2text/html2text.py
+alias md=$sw_home/Markdown_jgruber/markdown.pl
+alias nofake=$sw_home/Nofake/nofake
+alias sgp=$sw_home/Supergenpass/core/sgp
+alias hbox=$sw_home/Hsandbox/hsandbox

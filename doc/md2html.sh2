@@ -1,0 +1,109 @@
+#!/bin/sh
+
+#  md2html.sh - 
+#  
+#  Copyright (c) 2010 Ben Leak <leakin.org>
+#  2010-12-05 / ... | ...
+# 
+set -u
+set -e
+
+OPTIONS="\
+    foo [options] [-i|--implementation]
+    --
+    i    implementation (perl, python, pandoc)
+"
+
+# implementation
+impl='pandoc' # 'pandoc' is set as default
+
+# the markdown commands
+cmd_pandoc='pandoc -f markdown'
+cmd_python='markdown'
+cmd_perl=''
+
+hd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style type="text/css">
+    table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
+    td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; }
+    td.sourceCode { padding-left: 5px; }
+    pre.sourceCode { }
+    pre.sourceCode span.Normal { }
+    pre.sourceCode span.Keyword { color: #007020; font-weight: bold; } 
+    pre.sourceCode span.DataType { color: #902000; }
+    pre.sourceCode span.DecVal { color: #40a070; }
+    pre.sourceCode span.BaseN { color: #40a070; }
+    pre.sourceCode span.Float { color: #40a070; }
+    pre.sourceCode span.Char { color: #4070a0; }
+    pre.sourceCode span.String { color: #4070a0; }
+    pre.sourceCode span.Comment { color: #60a0b0; font-style: italic; }
+    pre.sourceCode span.Others { color: #007020; }
+    pre.sourceCode span.Alert { color: red; font-weight: bold; }
+    pre.sourceCode span.Function { color: #06287e; }
+    pre.sourceCode span.RegionMarker { }
+    pre.sourceCode span.Error { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+'
+
+ft='</body>
+</html>
+'
+
+
+main (){
+    in="$1"
+    inbase=$( echo $in | sed 's/\.[^\.]*$//g')
+    out="${inbase}.html"
+
+    case "$impl" in
+    pandoc)
+        echo "$hd" > $out
+        ${cmd_pandoc} $in >> $out
+        echo "$ft" >> $out
+        ;;
+    perl)
+        die "Perls markdown not implemented yet."
+        ;;
+    python)
+        echo "$hd" > $out
+        ${cmd_python} $in >> $out
+        echo "$ft" >> $out
+        ;;
+    esac
+
+}
+
+
+die(){
+	echo >&2 "$@"
+	exit 1
+}
+usage(){
+	die "Usage: $0 $USAGE"
+}
+case "$#" in 0) usage ;; esac
+
+while [ $# -gt 0 ]; do  
+  case "$1" in
+	-i|--implementation)
+		shift
+		if test "$#" = "0"; then
+			die "error: option -f needs an argument"
+		else 
+			impl="$1"
+		fi
+	;;
+	-h|--help) usage;exit 1;;
+	-*|--*) help;exit 1;;
+	*) break;;
+  esac
+  shift     
+done
+
+main "$1"

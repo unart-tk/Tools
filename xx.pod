@@ -1,0 +1,22 @@
+=head1 NAME
+
+getscripts - get all scripts, omit binaries
+
+=head1 SYNOPSIS
+
+getscripts [-f|--format] <directory>
+
+=head1 OPTIONS
+
+=over 4
+
+=item * --format=<output> :    Output formats are: html,pod,asciidoc,pandoc
+
+=item * --help:    Display help
+
+
+=back
+
+=head1 DESCRIPTION
+
+Find scripts in system directories like /bin, /usr/bin

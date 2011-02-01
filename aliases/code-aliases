@@ -1,0 +1,4 @@
+code=$HOME/dev/code/main/codes-buntar
+
+alias lp2md=$code/Litprog/lp2md.pl
+alias lp2nw=$code/Litprog/lp2nw.pl

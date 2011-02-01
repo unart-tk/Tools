@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# scriptskeleton --all foo.txt 
+
+# Copyright (c) 2011 Ben at untar.org
+# Free software, released under General Public License, GPL. See http://www.gnu.org/copyleft/gpl.txt
+
+TITLE="scriptskeleton - template for scripts"
+
+DESCRIPTION="This is a template for shell scripts in bash and dash."
+
+USAGE="[-a|--all][-f|--format FORMAT]  file"
+
+# ****
+
+set -e
+set -u
+
+main(){
+    echo  "--all: $1"
+    echo "--format: $2"
+    echo "file : $3"
+}
+
+die(){
+	echo >&2 "$@" && exit 1
+}
+usage(){
+	die "Usage: $0 $USAGE"
+}
+
+
+doc='' all='' format=''
+while [ $# -gt 0 ]; do  
+  case "$1" in
+	-a|--all) 
+        all=true;;
+	-f|--format)
+		shift
+		if test "$#" = "0"; then
+			die "Error: option -f needs an argument"
+		else 
+			format="$1"
+		fi
+	;;
+	-h|--help) usage;;
+	-d|--doc) doc=true;;
+	-*|--*) help;exit 1;;
+	*) break;;
+  esac
+  shift     
+done
+
+# this script has two run modes:
+# 1. --doc mode: just read the doc strings, omit main() and  exit
+# 2. normal mode:
+if [ -z "$doc" ]; then
+    case "$#" in 0) usage ;; esac
+    file="$1"
+    main "$all" "$format" "$file"
+else
+    exit 1
+fi
+
+

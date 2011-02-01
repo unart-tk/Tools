@@ -1,0 +1,3 @@
+toolsbin=$HOME/kit/Tools
+alias del=$toolsbin/util-del
+alias untar=$toolsbin/helper-untar
