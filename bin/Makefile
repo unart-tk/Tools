@@ -1,2 +1,0 @@
-virun:
-	runvi ./scriptskeleton
