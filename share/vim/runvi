@@ -1,0 +1,38 @@
+#!/bin/sh
+# run the script in your vim buffer
+# the scripts argument is in the second line of the script
+PROG='runvi'
+TITLE='define call parameters in the script itself'
+USAGE='FILE'
+
+DESCR='Normally you call script with parameters like: ./myapp.sh dome.txt. Now I was alway annoyed with running scripts in vim, with :! or whatnot. Whit this script you can define the command line on the 3rd line of the script.'
+
+set -e
+
+script=''
+
+if [ "$#" = 1 ]; then 
+    if [  "$1" = '--help'  -o  "$1" = '-h' ] ; then
+        echo "Usage: $PROG - $USAGE"
+        echo "Description:"
+        echo "$DESCR"
+        exit 1
+    fi
+    script="$(pwd)/$1"
+else
+    echo "Usage: $PROG - $USAGE"
+    exit 1
+fi
+
+
+
+cmd=$(sed -n '3,3p' "$script" | sed  's/#\s*//g')
+cmdline=$( echo $cmd | grep  '\.\/.*'  || { echo ''; } ) 
+
+if [ -z "$cmdline" ]; then
+    echo "Error: No ./command defined in script header"
+    
+else
+    ${cmd} || echo "Could not execute, maybe the command in the script $script is wrong"
+fi
+

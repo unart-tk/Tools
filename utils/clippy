@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# cat example.txt | ./clippy copy
+
+#    (c) 2011 Ben, untar.org
+
+
+PROG='clippy'
+TITEL='copy-paste for bash and X'
+DESCR='Example: Copy with: cat myfile.txt | copy. And then paste with: paste | wget'
+USAGE='[copy|paste] <STDIN>'
+
+
+clippydir=$HOME/.clippy
+
+usage(){
+    echo "Usage: $PROG - $USAGE"
+    exit 1
+}
+
+if [ "$#" = 0 ]; then
+    usage
+elif [ "$1" = 'copy' ]; then
+    docopy
+fi
+
+docopy {
+    while read data; do
+        echo "data = $data"
+    done
+}
+

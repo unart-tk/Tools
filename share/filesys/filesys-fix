@@ -1,0 +1,49 @@
+#!/usr/bin/perl 
+#===============================================================================
+#
+#         FILE:  fix-file-n-foldernames.pl
+#
+#        USAGE:  ./fix-file-n-foldernames.pl 
+#
+#  DESCRIPTION:  
+#
+#     REVISION:  ---
+#===============================================================================
+
+use strict;
+use warnings;
+
+my $dir = ".";
+
+
+&recurse_filenames($dir);
+
+
+sub recurse_filenames() {
+	my $dir = shift;
+	opendir my $dh , $dir  	 
+		or die "error: $! \n"; 
+	while ($_ = readdir $dh) {
+		next if /^\.{1,2}$/;
+		my $path = "$dir/$_";
+                my $filename= "$_";
+		print "in path: $path \n" if -f $path;
+                my $filename2 = &remove_space_in_filename($filename);
+                if ($filename2 ne $filename) {
+                   rename "$dir/$filename","$dir/$filename2" or warn "Unable rename: $!\n";
+                }      
+                $path = "$dir/$filename2";
+                &recurse_filenames($path) if -d $path;
+
+	}
+                                          
+	print "in dir: $dir \n" or print "error - $! \n";
+}
+
+sub remove_space_in_filename() {
+       my $file_w_space = shift;
+
+       (my $file_nospace = $file_w_space) =~ s/\s/_/g;
+       return $file_nospace;
+}
+

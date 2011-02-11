@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#     (c) 2011 Ben, untar.org
+#
+PROG=apts
+TITEL='an alias for: apt-cache search <pattern>'
+USAGE='<pattern>'
+
+usage(){
+    echo "Usage: $PROG - $USAGE"
+    exit 1
+}
+
+if [ "$#" = 0 ] ;then usage; fi
+pat="$1"
+
+apt-cache search "$pat"

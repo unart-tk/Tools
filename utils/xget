@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#   (c) 2011 Ben, untar.org
+
+# Get a url from clipboard
+
+
+
+wget --no-check-certificate `xclip -o` "$@"
+

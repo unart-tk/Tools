@@ -1,0 +1,34 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+
+my $term = 'sourcerepo';
+my $maildir="$ENV{'HOME'}/maildir";
+
+
+my $searchdir="$maildir/search";
+
+
+my @mures=qx(mu find -m "$maildir" "$term");
+
+foreach my $mr (@mures){
+    print "mr: $mr\n";
+
+}
+
+$term;dd
+
+#mu find "$term" -m "$maildir" --linksdir="$searchdir"/ --clearlinks
+#muli=$(ls "$searchdir/cur")
+
+#echo "mures: $mures"
+
+#old_IFS=$IFS      # save the field separator   
+#IFS=$'\n'     # new field separator, the end of line   
+#for line in ${mures}
+#do  
+#echo "my: $line"
+#done  
+
+#IFS=$old_IFS

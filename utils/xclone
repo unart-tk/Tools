@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#   (c) 2011 Ben, untar.org
+
+# Clone a git repo from xclip
+
+
+
+git clone  `xclip -o` "$@"
+

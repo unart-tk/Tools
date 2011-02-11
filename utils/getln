@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+#    (c) 2011 Ben, untar.org
+#
+
+txt="Get a single line of a file"
+
+ln="$1"
+file="$2"
+[ ! $file = "" ] && [ ! $ln = "" ]|| { echo "$txt"; echo "usage: $0 <filename> <linenumber>"; exit 1; }
+
+sed -n ${ln},${ln}p "$file"

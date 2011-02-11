@@ -1,0 +1,2 @@
+virun:
+	runvi ./clippy

@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# (c) 2011 Ben, untar
+
+PROG='findscripts'
+TITLE='get all scripts, omit binaries'
+
+DESCRIBE='Find scripts in system directories like /bin, /usr/bin'
+
+USAGE='[OPTIONS] <directory> <pattern>'
+
+OPT[0]="--help:    Display help"
+
+die () {
+    echo >&2 "$@" && exit 1
+}
+
+usage () {
+    die "Usage: $PROG $USAGE"
+}
+
+if [ ! "$#" = 2 ]; then usage; fi
+
+
+dir="$1"
+pat="$2"
+if [ ! -d "$dir" ]; then 
+    echo "Error: Directory '$dir' doesn't exist"; 
+    exit 1; 
+fi
+
+find "$dir" -type f -executable | while read f; do
+    if [ -f "$f" ] && [  "$(head -q -n1 "$f" | grep "$pat" )" ]; then 
+        echo "$f"; 
+    fi ; 
+done 
