@@ -1,9 +1,0 @@
-#!/bin/sh
-# run the script in your vim buffer
-# the scripts argument is in the second line of the script
-set -e
-
-script="$1"
-
-arg=$(sed -n '2,3p' "$script" | sed  's/^#.*:\s*//g')
-screen -S sess -p 0 -X stuff "${script} $arg "

@@ -1,6 +1,0 @@
-
-    </textarea> 
-    <textarea style="visibility:hidden"  id="outputPane" ></textarea>
-    <div id="previewPane" class="pane"><noscript>js not enabled</noscript></div>
-</body>
-</html>

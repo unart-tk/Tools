@@ -1,7 +1,0 @@
-#!/bin/sh
-# run the script in your vim buffer
-# the scripts argument is in the second line of the script
-set -e
-
-
-screen -S sess -p 0 -X stuff "make virun"

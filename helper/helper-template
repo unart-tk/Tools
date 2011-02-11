@@ -1,8 +1,0 @@
-#!/bin/sh
-
-
-tpl="$1"
-
-
-cp $HOME/kit/Templates/$tpl .
-
