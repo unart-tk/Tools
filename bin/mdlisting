@@ -1,0 +1,3 @@
+#!/bin/sh
+
+. $HOME/bin/tools/doc/mdlisting.sh "$@"
