@@ -1,0 +1,13 @@
+#!/bin/sh
+
+repo=''
+if [ "$#" = 1 ];then
+    repo="$1"
+else
+    echo "Usage: $0 <git repo name>"
+fi
+
+
+git push $repo master
+
+

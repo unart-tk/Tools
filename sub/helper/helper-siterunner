@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+convbin='pod2html'
+
+in="$1"
+out="$2"
+
+$convbin "$in" > "$out"
+
+screen -S sess -p 1 -X stuff 'BrowserReload();'
+#screen -S sess -p 1 -X stuff 'BrowserReload();repl.quit();'
+#echo 'BrowserReload();repl.quit();' | netcat localhost 4242
+#screen -S sess -p 1 -X stuff 'cat testfile.md'

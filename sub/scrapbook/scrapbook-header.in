@@ -1,0 +1,8 @@
+<html>
+<head>
+    <script type="text/javascript" src="../showdown.js"></script>
+    <script type="text/javascript" src="../showdown-gui.js"></script>   
+</head>
+<body>
+    <textarea style="visibility:hidden" id="inputPane">
+

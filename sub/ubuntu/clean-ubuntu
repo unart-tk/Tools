@@ -1,0 +1,7 @@
+#!/bin/sh
+
+
+
+rm -rf $HOME/.local/share/Trash/*
+
+rm -rf $HOME/.cache/*

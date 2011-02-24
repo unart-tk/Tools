@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# filtered ls
+
+
+
+ls . | xargs -0 grep $1

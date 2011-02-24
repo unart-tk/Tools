@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#     (c) 2011 Ben, untar.org
+#
+PROG=findi
+TITEL='an alias for: find <dir> -iname <file name pattern>'
+USAGE='<directory> <file name pattern>'
+
+usage(){
+    echo "Usage: $PROG - $USAGE"
+    exit 1
+}
+
+dir= pat=
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ] ;then 
+    usage 
+elif [ "$#" -lt 2 ];then 
+    # if just one arg, use '.' as default dir
+    pat="$1"
+    dir="."
+else
+    dir="$1"
+    pat="$2"
+fi
+
+if [ -d "$pat" ]; then
+    # if the args are in the wrong order, switch 'em
+    temp="$dir"
+    dir="$pat"
+    pat="$temp"
+elif [ ! -d "$dir" ];then
+    echo "Error:'$dir' is not a valid directory"
+    exit 1
+fi
+
+find "$dir" -iname "*$pat*" 

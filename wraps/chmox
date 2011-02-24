@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#     (c) 2011 Ben, untar.org
+#
+PROG=chmox
+TITEL='an alias for: chmod 0755'
+USAGE='FILE'
+
+usage(){
+    echo "Usage: $PROG - $USAGE"
+    exit 1
+}
+
+if [ "$#" = 0 ] ;then usage; fi
+pat="$1"
+
+chmod 0755 "$pat"
