@@ -1,3 +1,0 @@
-#!/bin/sh
-
-python $HOME/bin/tools/web/chromerefresh/chromerefresh.py "$@"

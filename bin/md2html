@@ -1,3 +1,0 @@
-#!/bin/sh
-
-. $HOME/bin/tools/sub/doc/md2html.sh "$@"
