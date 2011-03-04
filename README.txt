@@ -1,8 +1,4 @@
-Scripts
-=======
+Tools
+=====
 
-- internal helpers
-
-- NOT for public
-
-- may contain passwords!
+usefull stuff
