@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+
+maildir="$HOME"/maildir
+searchdir="$maildir"/search
+
+mures=$(mu find -m "$maildir" "$term")
+mu find "$term" -m "$maildir" --linksdir="$searchdir"/ --clearlinks
+muli=$(ls "$searchdir/cur")
+
+echo "mures: $mures"
+
+old_IFS=$IFS      # save the field separator   
+IFS=$'\n'     # new field separator, the end of line   
+for line in ${mures}
+do  
+echo "my: $line"
+done  
+
+IFS=$old_IFS
